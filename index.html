@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>USE OF ENGLISH — Slide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a; /* deep navy */
+      --bg2: #0f4c81; /* soft blue */
+      --accent: #ffb86b; /* warm gold */
+      --muted: rgba(255,255,255,0.85);
+      --glass: rgba(255,255,255,0.06);
+      --card-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,233,0.06), transparent),
+                  linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 100%);
+      color:var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .slide{
+      width:1200px;
+      max-width:96vw;
+      height:675px; /* 16:9 */
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:24px;
+      padding:36px;
+      box-shadow: var(--card-shadow);
+      position:relative;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* decorative top-left badge */
+    .badge{
+      position:absolute;
+      left:36px; top:28px;
+      display:flex;gap:10px;align-items:center;
+      background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      padding:10px 14px;border-radius:12px;backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .badge .dot{
+      width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff7a7a);
+      box-shadow:0 4px 18px rgba(255,184,107,0.22);
+    }
+    .badge strong{font-weight:700;color:var(--muted);letter-spacing:0.6px}
+
+    h1.title{
+      margin:32px 0 10px 0;
+      font-size:44px;line-height:1;letter-spacing:-0.5px;color:whitesmoke;font-weight:800;
+      text-transform:uppercase;
+      display:flex;align-items:center;gap:16px;
+    }
+    h1 .sub{
+      font-size:14px;color:rgba(255,255,255,0.6);font-weight:600;padding:6px 10px;border-radius:10px;background:var(--glass);
+    }
+
+    .top-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+
+    .designer-credit{
+      text-align:right;font-size:13px;color:rgba(255,255,255,0.6);
+    }
+
+    /* Four equal boxes */
+    .grid{
+      margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;height:420px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:14px;padding:26px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+      transition:transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s;cursor:default;border:1px solid rgba(255,255,255,0.03);
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+
+    .card .icon-wrap{
+      width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .label{font-size:18px;font-weight:700;margin:0 0 8px 0;color:whitesmoke}
+    .desc{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.35}
+
+    /* Specific visual accents for each card */
+    .mc .icon-wrap{background:linear-gradient(135deg,#3dd5ff22,#3478ff22);border-left:4px solid #34a6ff}
+    .gf .icon-wrap{background:linear-gradient(135deg,#9bffcc22,#00c57b22);border-left:4px solid #00c57b}
+    .wf .icon-wrap{background:linear-gradient(135deg,#ffd08a22,#ff8c4f22);border-left:4px solid #ff9b3b}
+    .st .icon-wrap{background:linear-gradient(135deg,#d7b8ff22,#7b61ff22);border-left:4px solid #8f6bff}
+
+    /* large number decoration */
+    .big-num{
+      position:absolute;right:48px;bottom:24px;font-size:120px;font-weight:900;color:rgba(255,255,255,0.03);transform:rotate(-8deg);pointer-events:none
+    }
+
+    /* responsive */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr);height:520px}
+      .big-num{display:none}
+    }
+    @media (max-width:600px){
+      .slide{padding:18px;height:auto}
+      .grid{grid-template-columns:1fr;gap:14px;height:auto}
+      .title{font-size:32px}
+    }
+
+    /* subtle animated rays */
+    .rays{position:absolute;right:-20%;top:-10%;width:60%;height:60%;background:conic-gradient(from 140deg at 50% 50%, rgba(255,184,107,0.06), transparent 20% 40%, rgba(255,255,255,0.02));transform:rotate(14deg);filter:blur(28px);pointer-events:none}
+
+    /* tiny footer */
+    .footer{position:absolute;left:36px;bottom:18px;font-size:12px;color:rgba(255,255,255,0.45)}
+  </style>
+</head>
+<body>
+  <div class="slide" role="main" aria-label="Use of English slide">
+    <div class="badge" aria-hidden="true">
+      <div class="dot"></div>
+      <strong>Slide</strong>
+      <div style="width:8px"></div>
+      <span style="font-size:12px;color:rgba(255,255,255,0.6)">Contest Edition</span>
+    </div>
+
+    <div class="top-row">
+      <div>
+        <h1 class="title">USE OF ENGLISH <span class="sub">— Exam Practice</span></h1>
+        <p style="margin:6px 0 0 0;color:rgba(255,255,255,0.6);font-size:14px">Four focused tasks to build accuracy, vocabulary and transformation skills.</p>
+      </div>
+      <div class="designer-credit">
+        Designed by <strong>Majid</strong> • Modern, bold &amp; legible
+      </div>
+    </div>
+
+    <div class="grid" role="list">
+      <div class="card mc" role="listitem" aria-label="Multiple Choice">
+        <div class="icon-wrap" aria-hidden="true">
+          <!-- simple SVG icon -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.2"/>
+            <circle cx="8.5" cy="11.5" r="1.7" fill="currentColor" fill-opacity="0.9"/>
+            <rect x="11.5" y="10.5" width="6" height="2" rx="1" fill="currentColor" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <h3 class="label">Multiple Choice</h3>
+        <p class="desc">Fast-paced questions that check vocabulary, collocations and grammar. Ideal for warm-ups and quick diagnostics.</p>
+      </div>
+
+      <div class="card gf" role="listitem" aria-label="Gap-fill">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7h18" stroke="currentColor" stroke-opacity="0.8" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M6 11h5" stroke="currentColor" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 15h10" stroke="currentColor" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round"/>
+            <rect x="3" y="3" width="0" height="0" />
+          </svg>
+        </div>
+        <h3 class="label">Gap‑fill</h3>
+        <p class="desc">Precision work on grammar and collocations — cloze exercises that make students think about form and meaning.</p>
+      </div>
+
+      <div class="card wf" role="listitem" aria-label="Word Formation">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6h16M4 12h10M4 18h12" stroke="currentColor" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="17" cy="12" r="2" fill="currentColor" fill-opacity="0.9"/>
+          </svg>
+        </div>
+        <h3 class="label">Word Formation</h3>
+        <p class="desc">Derivation and morphology challenges — change the word to fit the sentence while keeping meaning intact.</p>
+      </div>
+
+      <div class="card st" role="listitem" aria-label="Sentence Transformation">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 7h12M6 12h8M6 17h12" stroke="currentColor" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M3 3l4 4" stroke="currentColor" stroke-opacity="0.7" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="label">Sentence Transformation</h3>
+        <p class="desc">Perfect for practising reported speech, conditionals and paraphrase — keep the meaning, change the form.</p>
+      </div>
+    </div>
+
+    <div class="big-num">UOE</div>
+    <div class="rays" aria-hidden="true"></div>
+
+    <div class="footer">Ready for use in slides, PDFs or as a section header for lesson materials.</div>
+  </div>
+</body>
+</html>
